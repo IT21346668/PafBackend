@@ -11,7 +11,7 @@ spring:
     active: dev
   data:
     mongodb:
-      uri: mongodb+srv://root:root@cluster0.spmcifx.mongodb.net/paf
+      uri: mongodb+srv://paf28:paf28@cluster0.gjpikoa.mongodb.net/
       database: ${MONGODB_DB}
   security:
     oauth2:

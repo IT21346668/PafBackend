@@ -64,6 +64,10 @@ public class CommentController {
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Helper method to populate user details in a Comment
+    @GetMapping("/post/{postId}")
+    public List<Comment> getCommentsByPostId(@PathVariable String postId) {
+        List<Comment> comments = commentRepository.findByPostId(postId);
+        return comments;
+    }
 
 }

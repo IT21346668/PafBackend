@@ -11,6 +11,27 @@ public class UserProfile {
     private String biography;
     private String fitnessGoals;
 
+    private boolean profileVisibility;
+private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getId() {
         return id;
     }
@@ -51,7 +72,7 @@ public class UserProfile {
         this.profileVisibility = profileVisibility;
     }
 
-    private boolean profileVisibility;
+
 
     public UserProfile() {}
 

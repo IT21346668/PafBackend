@@ -35,30 +35,18 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    // Update a user by ID
-    /*@PutMapping("/{id}")
-    public UserProfile updateUser(@PathVariable String id, @RequestBody User updatedUser) {
-        return userRepository.findById(id)
-                .map(user -> {
-                    user.setUsername(updatedUser.getUsername());
-                    user.setEmail(updatedUser.getEmail());
-                    user.setHashedPassword(updatedUser.getHashedPassword());
-                    user.setProfilePictureUrl(updatedUser.getProfilePictureUrl());
-                    user.setBio(updatedUser.getBio());
-                    user.setFitnessGoals(updatedUser.getFitnessGoals());
-                    user.setProfileVisibility(updatedUser.isProfileVisibility());
-                    return userRepository.save(user);
-                })
-                .orElseGet(() -> {
-                    updatedUser.setId(id);
-                    return userRepository.save(updatedUser);
-                });
-    }*/
+
 
     // Delete a user by ID
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable String id) {
         userRepository.deleteById(id);
+    }
+
+    @GetMapping("/exists/{username}")
+    public ResponseEntity<Boolean> checkIfUserExists(@PathVariable String username) {
+        boolean userExists = userRepository.existsByUsername(username);
+        return ResponseEntity.ok(userExists);
     }
 
 

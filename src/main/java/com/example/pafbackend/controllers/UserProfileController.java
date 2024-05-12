@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/userProfiles")
+
 public class UserProfileController {
 
     @Autowired
@@ -35,10 +36,16 @@ public class UserProfileController {
         return userProfile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/user/{userId}")
+    public List<UserProfile> getUserProfileByUserId(@PathVariable String userId) {
+        return userProfileRepository.findByUserId(userId);
+    }
+
     // Update a UserProfile by ID
     @PutMapping("/{id}")
     public ResponseEntity<UserProfile> updateUserProfile(@PathVariable String id, @RequestBody UserProfile userProfileDetails) {
         return userProfileRepository.findById(id).map(existingUserProfile -> {
+            existingUserProfile.setImage(userProfileDetails.getImage());
             existingUserProfile.setBiography(userProfileDetails.getBiography());
             existingUserProfile.setFitnessGoals(userProfileDetails.getFitnessGoals());
             existingUserProfile.setProfileVisibility(userProfileDetails.isProfileVisibility());
